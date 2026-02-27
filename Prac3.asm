@@ -7,8 +7,8 @@
 ;------------- inicializar ------------------------------------------
 ldi R24,INIT_VALUE
 ;------------- implementar ------------------------------------------
-call delay20uS
-call delay4mS
+;call delay20uS
+;call delay4mS
 ;call delay1S
 ;call myRand ; Retorna valor en R25
 ;------------- ciclo principal --------------------------------------
@@ -47,6 +47,8 @@ delay4mS:
 	
 	nop
 	nop
+    nop
+    nop
 	ret
 delay1S:
     ldi R23, 144
@@ -68,6 +70,18 @@ loop1:
     nop                   
     nop                  
     nop                  
-  
+  	nop
+ 	nop
     
     ret
+
+myRand:
+    lsr R25              ; Desplaza R25 (el número anterior). El bit 0 cae al Carry.
+    brcc fin_random      ; Si el Carry es 0, saltamos directo al final.
+    
+    ldi R16, 0xB8        ; Usamos R16 como auxiliar para el polinomio mágico.
+    eor R25, R16         ; Hacemos el XOR directamente sobre R25.
+
+fin_random:
+    ret
+
