@@ -7,8 +7,8 @@
 ;------------- inicializar ------------------------------------------
 ldi R24,INIT_VALUE
 ;------------- implementar ------------------------------------------
-;call delay103uS
-;call delay1mS
+call delay20uS
+call delay4mS
 ;call delay1S
 ;call myRand ; Retorna valor en R25
 ;------------- ciclo principal --------------------------------------
@@ -23,3 +23,28 @@ abajo: dec R24
 	breq arriba
 	out PORTA,R24
 	rjmp abajo
+delay 20uS:
+	ldi R24, 77
+	nxt:
+		nop
+     	dec R24
+     	brne nxt
+	
+	nop
+	nop
+	ret
+
+delay 4mS:
+	ldi R24, 162 ; 1
+	nxt:
+     	ldi r25, 98 ; n
+	 	nxt2:
+			dec r25 ; m*n
+			brne nxt2 ; (2m-1)*n
+			nop
+     	dec R24; n
+    	brne nxt; 2n - 1
+	
+	nop
+	nop
+	ret
