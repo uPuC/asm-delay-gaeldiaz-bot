@@ -23,28 +23,51 @@ abajo: dec R24
 	breq arriba
 	out PORTA,R24
 	rjmp abajo
-delay 20uS:
+delay20uS:
 	ldi R24, 77
-	nxt:
+	loop1:
 		nop
      	dec R24
-     	brne nxt
+     	brne loop1
 	
 	nop
 	nop
 	ret
 
-delay 4mS:
+delay4mS:
 	ldi R24, 162 ; 1
-	nxt:
+	loop1:
      	ldi r25, 98 ; n
-	 	nxt2:
+	 	loop2:
 			dec r25 ; m*n
-			brne nxt2 ; (2m-1)*n
+			brne loop2; (2m-1)*n
 			nop
      	dec R24; n
-    	brne nxt; 2n - 1
+    	brne loop1; 2n - 1
 	
 	nop
 	nop
 	ret
+delay1S:
+    ldi R23, 144
+loop3:
+    ldi R24, 188
+loop2:
+    ldi R25, 196 
+loop1:
+    dec R25               
+    brne loop1            
+    dec R24               
+    brne loop2            
+    dec R23               
+    brne loop3            
+    
+    nop                   
+    nop                  
+    nop                   
+    nop                   
+    nop                  
+    nop                  
+  
+    
+    ret
