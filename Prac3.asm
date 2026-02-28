@@ -39,9 +39,9 @@ delay4mS:
 	loop1:
      	ldi r25, 98 ; n
 	 	loop2:
+			nop
 			dec r25 ; m*n
 			brne loop2; (2m-1)*n
-			nop
      	dec R24; n
     	brne loop1; 2n - 1
 	
